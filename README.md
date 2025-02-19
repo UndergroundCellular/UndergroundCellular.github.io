@@ -24,8 +24,6 @@
 ## Introduction
 This repository contains our continuous monitoring infrastructure (based on a customized Android system dubbed Android-MOD) for recording fine-grained observability data when users engage with mobile apps using underground cellular networks, as well as our efforts for mitigating Video Stream Stalls (VSSes) in subways on Android devices. We also release a portion of our measurement data (with proper anonymization). Our latest Android-MOD system is built upon vanilla Android 13/14. Therefore, you'll be able to run codes in this repo by patching these modifications to proper framework components.
 
-### [The entire codebase and sample data are available in our [Github repo](https://github.com/UndergroundCellular/UndergroundCellular.github.io).]
-
 ### Continous Monitoring Infrastructure
 Our modifications to the vanilla Android mainly consist of three parts, as shown in [monitor](https://github.com/UndergroundCellular/UndergroundCellular.github.io/tree/main/monitor).
 First, we add [`SubwayDetection.java`](https://github.com/UndergroundCellular/UndergroundCellular.github.io/blob/main/monitor/SubwayDetection.java) to detect when a device boards a subway. 
@@ -45,7 +43,7 @@ Third, to monitor the frame rate of the foreground app and detect VSSes, we modi
 
 ### System-level Mobility Management Enhancement
 We currently provide our Time-Inhomogeneous State Space Model (TISSM) that characterizes the underground signal attenuation, enabling Android's cellular management to find the optimal handover timing.
-As shown in [TISSMModel](https://github.com/UndergroundCellular/UndergroundCellular.github.io/blob/main/tissm/tissm_model.java), Android-MOD updates the TISSM-based signal attenuation model when new signal strength measurements are obtained.
+As shown in [TISSMModel](https://github.com/UndergroundCellular/UndergroundCellular.github.io/blob/main/tissm/TISSMModel.java), Android-MOD updates the TISSM-based signal attenuation model when new signal strength measurements are obtained.
 Leveraging the model, the system then estimates future signal attenuation to determine whether to trigger handover.
 
 ### App-level Mobility Management Enhancement
@@ -57,7 +55,7 @@ For Android-related modifications, currently our code is run and tested in Andro
 Note that despite quite a number of changes have been made in Android 14 since Android 13, our code is applicable to both given that concerned tracing points remain unchanged.
 
 ## Data Release
-We provide a portion of data recorded when mobile apps are active in foreground in subway environments for references [here](https://github.com/UndergroundCellular/UndergroundCellular.github.io/sample_dataset), including critical network, cellular, and device information:
+We provide a portion of data recorded when mobile apps are active in foreground in subway environments for references [here](https://github.com/UndergroundCellular/UndergroundCellular.github.io/blob/main/sample_dataset/sample_data.csv), including critical network, cellular, and device information:
 
 | Information | Description |
 | ---- | ---- |
@@ -72,4 +70,3 @@ We provide a portion of data recorded when mobile apps are active in foreground 
 
 ## For Developers
 Our code is licensed under Apache 2.0 in accordance with AOSP's license. Please adhere to the corresponding open source policy when applying modifications and commercial uses.
-

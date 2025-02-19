@@ -43,7 +43,7 @@ Third, to monitor the frame rate of the foreground app and detect VSSes, we modi
 
 ### System-level Mobility Management Enhancement
 We currently provide our Time-Inhomogeneous State Space Model (TISSM) that characterizes the underground signal attenuation, enabling Android's cellular management to find the optimal handover timing.
-As shown in [TISSMModel](https://github.com/UndergroundCellular/UndergroundCellular.github.io/blob/main/tissm/tissm_model.java), Android-MOD updates the TISSM-based signal attenuation model when new signal strength measurements are obtained.
+As shown in [TISSMModel](https://github.com/UndergroundCellular/UndergroundCellular.github.io/blob/main/tissm/TISSMModel.java), Android-MOD updates the TISSM-based signal attenuation model when new signal strength measurements are obtained.
 Leveraging the model, the system then estimates future signal attenuation to determine whether to trigger handover.
 
 ### App-level Mobility Management Enhancement
@@ -55,7 +55,7 @@ For Android-related modifications, currently our code is run and tested in Andro
 Note that despite quite a number of changes have been made in Android 14 since Android 13, our code is applicable to both given that concerned tracing points remain unchanged.
 
 ## Data Release
-We provide a portion of data recorded when mobile apps are active in foreground in subway environments for references [here](https://github.com/UndergroundCellular/UndergroundCellular.github.io/sample_dataset), including critical network, cellular, and device information:
+We provide a portion of data recorded when mobile apps are active in foreground in subway environments for references [here](https://github.com/UndergroundCellular/UndergroundCellular.github.io/blob/main/sample_dataset/sample_data.csv), including critical network, cellular, and device information:
 
 | Information | Description |
 | ---- | ---- |
