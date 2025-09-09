@@ -24,6 +24,7 @@ This repository contains our continuous monitoring infrastructure (based on a cu
 
 ### [The entire codebase and sample data are available in our [Github repo](https://github.com/UndergroundCellular/UndergroundCellular.github.io).]
 
+## Codebase Organization
 ### Continous Monitoring Infrastructure
 Our modifications to the vanilla Android mainly consist of three parts, as shown in [Monitor](https://github.com/UndergroundCellular/UndergroundCellular.github.io/tree/main/monitor).
 First, we add [`SubwayDetection.java`](https://github.com/UndergroundCellular/UndergroundCellular.github.io/blob/main/monitor/SubwayDetection.java) to detect when a device boards a subway. 
@@ -54,7 +55,7 @@ For Android-related modifications, currently our code is run and tested in Andro
 Note that despite quite a number of changes have been made in Android 14 since Android 13, our code is applicable to both given that concerned tracing points remain unchanged.
 
 ## Data Release
-We provide a portion of data recorded when mobile apps are active in foreground in subway environments for references [here](https://github.com/UndergroundCellular/UndergroundCellular.github.io/blob/main/sample_dataset/sample_data.csv), including critical network, cellular, and device information:
+We provide a portion of data recorded when mobile apps are active in foreground in subway environments for references [here](https://github.com/UndergroundCellular/UndergroundCellular.github.io/blob/main/dataset/sample_data.csv), including critical network, cellular, and device information:
 
 | Information | Description |
 | ---- | ---- |
