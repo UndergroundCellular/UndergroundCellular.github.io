@@ -25,7 +25,7 @@
 This repository contains our continuous monitoring infrastructure (based on a customized Android system dubbed SubCell) for recording fine-grained observability data when users engage with mobile apps using underground cellular networks, as well as our efforts for mitigating Video Stream Stalls (VSSes) in subways on Android devices. We also release a portion of our measurement data (with proper anonymization). Our latest SubCell system is built upon vanilla Android 13/14. Therefore, you'll be able to run codes in this repo by patching these modifications to proper framework components.
 
 ### Continous Monitoring Infrastructure
-Our modifications to the vanilla Android mainly consist of three parts, as shown in [monitor](https://github.com/UndergroundCellular/UndergroundCellular.github.io/tree/main/monitor).
+Our modifications to the vanilla Android mainly consist of three parts, as shown in [Monitor](https://github.com/UndergroundCellular/UndergroundCellular.github.io/tree/main/monitor).
 First, we add [`SubwayDetection.java`](https://github.com/UndergroundCellular/UndergroundCellular.github.io/blob/main/monitor/SubwayDetection.java) to detect when a device boards a subway. 
 Second, once the device is confirmed to be in a subway environment, 
     SubCell initiates our dedicated data recording service ([`SubwayDataCollection.java`](https://github.com/UndergroundCellular/UndergroundCellular.github.io/blob/main/monitor/SubwayDataCollection.java)) to log the network states we are concerned with (as listed [here](#data-release)).
@@ -43,11 +43,13 @@ Third, to monitor the frame rate of the foreground app and detect VSSes, we modi
 
 ### System-level Enhancement
 We provide our Time-Inhomogeneous State Space Model (TISSM) that leverages a time-varying multi-order state space to finely characterize the underground signal attenuation, enabling Android's cellular management to find the optimal handover timing.
-As shown in [TISSMModel](https://github.com/UndergroundCellular/UndergroundCellular.github.io/blob/main/TISSM-Model/TISSMModel.java), SubCell updates the TISSM-based signal attenuation model when new signal strength measurements are obtained.
+As shown in [TISSM_Model](https://github.com/UndergroundCellular/UndergroundCellular.github.io/blob/main/TISSM_Model/TISSMModel.java), SubCell updates the TISSM-based signal attenuation model when new signal strength measurements are obtained.
 Leveraging the model, the system then estimates future signal attenuation to determine whether to trigger handover.
 
 ### App-level Enhancement
-We are preparing our code of the radio/link state collection module.
+We provide our code of the radio/link state collection module in [Collection_Module](https://github.com/UndergroundCellular/UndergroundCellular.github.io/blob/main/Collection_Module/RadioLinkMonitor.java). We encapsulate this functionality into a system-level component named `RadioLinkMonitor`, which runs within the telephony framework and continuously collects fine-grained radio and link metrics. We expose this module via a binder-based callback interface by extending ``TelephonyManager`` to expose a new API ``registerRadioLinkMetricsCallback``. Apps can subscribe to per-second updates by implementing the callback interface and invoking this API.
+
+These metrics are cached internally and exposed to the system server through `PhoneInterfaceManager`, which serves as the binder implementation of telephony services. Apps can access the latest metrics by invoking the system API `TelephonyManager.getRadioMetrics()`, which internally retrieves data from `RadioLinkMonitor` via this binder interface.
 
 ## Platform Requirements
 For Android-related modifications, currently our code is run and tested in Android 13 and Android 14 (AOSP).
