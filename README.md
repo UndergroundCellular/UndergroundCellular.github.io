@@ -79,7 +79,7 @@ Each record contains the following information:
 | `cid` | Cell Identity |
 | `label` | The VSS label (1 for VSS and 0 for non-VSS). |
 
-In addition, we provide a [complementary dataset](https://github.com/UndergroundCellular/UndergroundCellular.github.io/blob/main/Dataset/sample_data.csv), which contains data segments around VSS occurrences, , including critical network, cellular, and device information:
+In addition, we provide a [complementary dataset](https://github.com/UndergroundCellular/UndergroundCellular.github.io/blob/main/Dataset/sample_data.csv) which contains data segments around VSS occurrences for reference, including critical network, cellular, and device information:
 
 | Information | Description |
 | ---- | ---- |
