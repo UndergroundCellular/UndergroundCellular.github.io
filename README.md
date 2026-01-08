@@ -57,20 +57,39 @@ For Android-related modifications, currently our code is run and tested in Andro
 Note that despite quite a number of changes have been made in Android 14 since Android 13, our code is applicable to both given that concerned tracing points remain unchanged.
 
 ## Data Release
-We provide a portion of data recorded when mobile apps are active in foreground in subway environments for references [here](https://github.com/UndergroundCellular/UndergroundCellular.github.io/blob/main/Dataset/sample_data.csv), including critical network, cellular, and device information:
+We release a portion of data [here](https://github.com/UndergroundCellular/UndergroundCellular.github.io/tree/main/Dataset/Primary_Dataset), which provides continuous measurements covering entire subway rides.
+This dataset includes measurements collected from three subway lines in Beijing, spanning **26.5 hours** of subway travel and capturing **676 VSS events**.  
+Each record contains the following information:
 
 | Information | Description |
 | ---- | ---- |
-| `UID` | Unique ID generated to identify a user (cannot be related to the user's true indentity) |
-| `TIME` | UNIX timestamp when recording starts |
-| `OS` | Android vesion |
-| `MODEL` | Device model |
-| `APN`   | Current access point names |
-| `APP`   | The foreground app |
-| `DATA` | Detailed data recorded every second during the measurement, with each second's data arranged in the following order: round-trip time (RTT), packet loss rate, DNS query success rate, DNS query latency, uplink bandwidth, downlink bandwidth, Radio Access Technology (RAT, `14` stands for 4G and `20` stands for 5G), Reference Signal Received Power (RSRP), Signal-to-Noise Ratio (SNR), Cell Identity (CID), Modulation and Coding Scheme (MCS), MIMO layers, and the VSS label (1 for VSS and 0 for non-VSS). Here we only present data around VSS occurrences.|
+| `ts` | Recording time |
+| `rtt` | Round-trip time (ms)|
+| `pkgLossRat` | Packet loss rate |
+| `dlThroughput` | Downlink throughput (MBps) |
+| `ulThroughput` | Uplink throughput (MBps) |
+| `dnsLatency` | DNS query latency (ms) |
+| `dnsSuccessRate` | DNS query success rate |
+| `rsrp` | Reference Signal Received Power |
+| `rsrq` | Reference Signal Receiving Quality |
+| `snr` | Signal-to-Noise Ratio |
+| `mimoLayer` | The MIMO layer |
+| `mcs` | Modulation and Coding Scheme |
+| `rat` | Radio Access Technology, `14` for 4G and `20` for 5G |
+| `cid` | Cell Identity |
+| `label` | The VSS label (1 for VSS and 0 for non-VSS). |
 
-In addition, we release a complementary dataset [here](https://github.com/UndergroundCellular/UndergroundCellular.github.io/tree/main/Dataset/Complementary_Dataset), which provides continuous measurements covering entire subway rides (rather than data segments around VSS occurrences).
-This dataset includes measurements collected from three subway lines in Beijing, spanning 26.5 hours of subway travel and capturing 676 VSS events.
+In addition, we provide a [complementary dataset](https://github.com/UndergroundCellular/UndergroundCellular.github.io/blob/main/Dataset/sample_data.csv), which contains data segments around VSS occurrences, , including critical network, cellular, and device information:
+
+| Information | Description |
+| ---- | ---- |
+| `UID` | Unique ID generated to identify a user (cannot be related to the user's true identity) |
+| `TIME` | UNIX timestamp when recording for this segment starts |
+| `OS` | Android version |
+| `MODEL` | Device model |
+| `APN` | Current access point name |
+| `APP` | The foreground app |
+| `DATA` | Detailed data recorded every second within a short window around each VSS event, with each second's data arranged in the following order: round-trip time (RTT), packet loss rate, DNS query success rate, DNS query latency, uplink bandwidth, downlink bandwidth, Radio Access Technology (RAT, `14` for 4G and `20` for 5G), Reference Signal Received Power (RSRP), Signal-to-Noise Ratio (SNR), Cell Identity (CID), Modulation and Coding Scheme (MCS, `4` for QPSK, `16` for 16 QAM, and `64` for 64 QAM), MIMO layers, and the VSS label (1 for VSS and 0 for non-VSS). |
 
 
 ## For Developers
