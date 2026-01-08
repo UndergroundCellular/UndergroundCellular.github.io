@@ -65,8 +65,10 @@ We provide a portion of data recorded when mobile apps are active in foreground 
 | `MODEL` | Device model |
 | `APN`   | Current access point names |
 | `APP`   | The foreground app |
-| `DATA` | Detailed data recorded every second during the measurement, with each second's data arranged in the following order: round-trip time (RTT), packet loss rate, DNS query success rate, DNS query latency, uplink bandwidth, downlink bandwidth, Radio Access Technology (RAT), Reference Signal Received Power (RSRP), Signal-to-Noise Ratio (SNR), Cell Identity (CID), and the VSS label (1 for VSS and 0 for non-VSS). Here we only present data around VSS occurrences.|
+| `DATA` | Detailed data recorded every second during the measurement, with each second's data arranged in the following order: round-trip time (RTT), packet loss rate, DNS query success rate, DNS query latency, uplink bandwidth, downlink bandwidth, Radio Access Technology (RAT, `14` stands for 4G and `20` stands for 5G), Reference Signal Received Power (RSRP), Signal-to-Noise Ratio (SNR), Cell Identity (CID), Modulation and Coding Scheme (MCS), MIMO layers, and the VSS label (1 for VSS and 0 for non-VSS). Here we only present data around VSS occurrences.|
 
+In addition, we release a complementary dataset [here](https://github.com/UndergroundCellular/UndergroundCellular.github.io/tree/main/Dataset/Complementary_Dataset), which provides continuous measurements covering entire subway rides (rather than data segments around VSS occurrences).
+This dataset includes measurements collected from three subway lines in Beijing, spanning 26.5 hours of subway travel and capturing 676 VSS events.
 
 ## For Developers
 Our code is licensed under Apache 2.0 in accordance with AOSP's license. Please adhere to the corresponding open source policy when applying modifications and commercial uses.
